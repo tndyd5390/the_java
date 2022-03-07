@@ -5,7 +5,7 @@ package org.example;
  */
 public class App {
 
-    //클래스 로더의 preparation에서 값을 할당함
+    //클래스 로더의 preparation에서
     static String name = "sooyong";
 
     public static void main(String[] args) {
