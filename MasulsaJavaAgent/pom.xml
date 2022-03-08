@@ -6,10 +6,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>me.whiteship</groupId>
-  <artifactId>classloadersample</artifactId>
+  <artifactId>MasulsaJavaAgent</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>classloadersample</name>
+  <name>MasulsaJavaAgent</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -27,7 +27,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
     <dependency>
       <groupId>net.bytebuddy</groupId>
       <artifactId>byte-buddy</artifactId>
@@ -39,6 +38,27 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.2</version>
+          <configuration>
+            <archive>
+              <index>true</index>
+              <manifest>
+                <addClasspath>true</addClasspath>
+              </manifest>
+              <manifestEntries>
+                <mode>development</mode>
+                <url>${project.url}</url>
+                <key>value</key>
+                <Premain-Class>me.whiteship.MasulsaAgent</Premain-Class>
+                <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                <Can-Retransform-Classes>true</Can-Retransform-Classes>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
