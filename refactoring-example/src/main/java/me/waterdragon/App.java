@@ -44,7 +44,23 @@ public class App {
 			int modifiers = m.getModifiers();
 			// m.getReturnType();
 			// m.getParameterTypes();
-			
+
+		});
+
+		Arrays.stream(Book.class.getAnnotations()).forEach(System.out::println);
+
+		Arrays.stream(MyBook.class.getAnnotations()).forEach(System.out::println);
+
+		//클래스에만 있는 어노테이션을 가져오고 싶다
+		Arrays.stream(MyBook.class.getDeclaredAnnotations()).forEach(System.out::println);
+
+		Arrays.stream(Book.class.getDeclaredFields()).forEach(f -> {
+			Arrays.stream(f.getAnnotations()).forEach(System.out::println);
+			Arrays.stream(f.getAnnotations()).forEach(a -> {
+				MyAnnotation myAnnotation = (MyAnnotation)a;
+				System.out.println(myAnnotation.value());
+				System.out.println(myAnnotation.number());
+			});
 		});
 	}
 }
